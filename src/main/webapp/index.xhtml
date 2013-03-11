@@ -3,11 +3,25 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
     template="/WEB-INF/templates/default.xhtml">
-    <ui:define name="content">
-        <h1>Welcome to Java EE 6!</h1>
+    
+    <ui:define name="sideContent">
 
-        <p>You have successfully deployed a Java EE 6 web application.</p>
-       
+		<div class="adsSide">
+			Ads here
+		</div>
+       	
+    </ui:define>
+    
+    <ui:define name="content">
+
+		<h:outputText value="#{dealsBean.beanName}" />
+
+        <p:selectOneMenu value="#{dealsBean.searchCriteria.category}">
+        	<f:selectItem itemLabel="Choose your destiny"/>
+        	<f:selectItems var="#{dealsBean.categorySelectItems}"/>
+        </p:selectOneMenu>
+       	
     </ui:define>
 </ui:composition>

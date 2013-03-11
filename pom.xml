@@ -10,6 +10,17 @@
     <name>Java EE 6 webapp project</name>
     <description>A starter Java EE 6 webapp project for use on Java EE 6-compliant application servers, generated from the jboss-javaee6-webapp archetype</description>
 
+    <dependencyManagement>
+    	<dependencies>
+    		<dependency>
+    			<groupId>org.jboss.spec</groupId>
+    			<artifactId>jboss-javaee-web-6.0</artifactId>
+    			<version>${javaee6.web.spec.version}</version>
+    			<type>pom</type>
+    			<scope>import</scope>
+    		</dependency>
+    	</dependencies>
+    </dependencyManagement>
     <properties>
         <!-- Explicitly declaring the source encoding eliminates the following message: -->
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent! -->
@@ -23,6 +34,7 @@
         <jboss.domain>default</jboss.domain>
         <arquillian.version>1.0.0.Alpha5</arquillian.version>
         <jboss-javaee6-spec.version>1.0.0.Final</jboss-javaee6-spec.version>
+        <javaee6.web.spec.version>2.0.0.Final</javaee6.web.spec.version>
     </properties>
 
     <repositories>
@@ -114,6 +126,17 @@
             <artifactId>arquillian-junit</artifactId>
             <version>${arquillian.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+        	<groupId>org.jboss.spec.javax.faces</groupId>
+        	<artifactId>jboss-jsf-api_2.0_spec</artifactId>
+        	<scope>provided</scope>
+        </dependency>
+        <dependency>
+        	<groupId>org.jboss.spec.javax.faces</groupId>
+        	<artifactId>jboss-jsf-api_2.0_spec</artifactId>
+        	<scope>provided</scope>
+        	<optional>false</optional>
         </dependency>
     </dependencies>
 
