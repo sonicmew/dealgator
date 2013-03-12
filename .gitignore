@@ -1,0 +1,11 @@
+.settings
+.classpath
+.project
+target
+.factorypath
+dependency-reduced-pom.xml
+bin
+*.graphml
+MANIFEST.MF
+*.jsfdia
+*/log.txt
