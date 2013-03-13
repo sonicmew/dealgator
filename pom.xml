@@ -356,5 +356,8 @@
     <modules>
     	<module>frontend</module>
     <module>backend</module>
-  </modules>
+    <module>persistence</module>
+    <module>services</module>
+    <module>common</module>
+    </modules>
 </project>
