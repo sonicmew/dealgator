@@ -36,6 +36,12 @@ public class Deal implements Serializable {
 	
 	@Column(name = "deal_price")
 	private int dealPrice;
+	
+	@Column(nullable = false)
+	private Category category;
+	
+	@Column(nullable = false)
+	private Shop shop;
 
 	/**
 	 * @return the id

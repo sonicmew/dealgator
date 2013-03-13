@@ -17,8 +17,11 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String name;
-	private boolean enabled;
+	@Column(nullable = false)
+	private boolean enabled = true;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Category() {
