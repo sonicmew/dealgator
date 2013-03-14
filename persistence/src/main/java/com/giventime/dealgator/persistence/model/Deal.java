@@ -37,11 +37,12 @@ public class Deal implements Serializable {
 	@Column(name = "deal_price")
 	private int dealPrice;
 	
-	@Column(nullable = false)
+	@ManyToOne(optional=true)
+	@JoinColumn(name="category_id")
 	private Category category;
 	
 	@Column(nullable = false)
-	private Shop shop;
+	//private Shop shop;
 
 	/**
 	 * @return the id
@@ -126,5 +127,33 @@ public class Deal implements Serializable {
 	public void setDealPrice(int dealPrice) {
 		this.dealPrice = dealPrice;
 	}
+
+	/**
+	 * @return the category
+	 */	
+	public Category getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+//	/**
+//	 * @return the shop
+//	 */
+//	public Shop getShop() {
+//		return shop;
+//	}
+//
+//	/**
+//	 * @param shop the shop to set
+//	 */
+//	public void setShop(Shop shop) {
+//		this.shop = shop;
+//	}
    
 }
