@@ -9,7 +9,6 @@
 
    <groupId>com.giventime.dealgator</groupId>
    <artifactId>backend</artifactId>
-   <version>0.0.1-SNAPSHOT</version>
    <packaging>war</packaging>
 
    <name>Java EE 6 webapp project</name>
@@ -76,11 +75,6 @@
 
       <!-- Import the JAX-RS API, we use provided scope as the API is included 
          in JBoss AS 7 -->
-      <dependency>
-         <groupId>org.jboss.spec.javax.ws.rs</groupId>
-         <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
-         <scope>provided</scope>
-      </dependency>
 
       <!-- Import the JPA API, we use provided scope as the API is included 
          in JBoss AS 7 -->
@@ -143,6 +137,21 @@
          <scope>test</scope>
       </dependency>
 
+      <dependency>
+      	<groupId>com.giventime.dealgator</groupId>
+      	<artifactId>persistence</artifactId>
+      	<version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+      	<groupId>com.giventime.dealgator</groupId>
+      	<artifactId>common</artifactId>
+      	<version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+      	<groupId>com.giventime.dealgator</groupId>
+      	<artifactId>services</artifactId>
+      	<version>0.0.1-SNAPSHOT</version>
+      </dependency>
    </dependencies>
 
    <build>

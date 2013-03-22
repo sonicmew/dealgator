@@ -48,9 +48,9 @@ public class DealsDao extends BaseDao<Deal> {
 		
 		Root<Deal> deal_ = query.from(Deal.class);
 		
-		for (String searchTerm : searchCriteria.getSearchTerms()) {
-			query.where(criteria.like(criteria.upper(deal_.get(Deal_.title)), searchTerm));
-		}
+//		for (String searchTerm : searchCriteria.getSearchTerms()) {
+//			query.where(criteria.like(criteria.upper(deal_.get(Deal_.title)), searchTerm));
+//		}
 		
 		try {
 			return getEntityManager().createQuery(query).getResultList();

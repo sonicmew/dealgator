@@ -1,6 +1,9 @@
 package com.giventime.dealgator.persistence.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -22,26 +25,13 @@ public class Deal implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "title")
-	private String title;
+	@OneToMany
+	private List<DealProperty> properties = new ArrayList<DealProperty>();
 	
-	@Column(name = "description")
-	private String description;
+	@ManyToMany(mappedBy="deals")
+	private List<CategoryGroup> categoryGroups;
 	
-	@Column(name = "original_price")
-	private int originalPrice;
-	
-	@Column(name = "discount")
-	private int discount;
-	
-	@Column(name = "deal_price")
-	private int dealPrice;
-	
-	@ManyToOne(optional=true)
-	@JoinColumn(name="category_id")
-	private Category category;
-	
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	//private Shop shop;
 
 	/**
@@ -59,87 +49,31 @@ public class Deal implements Serializable {
 	}
 
 	/**
-	 * @return the title
+	 * @return the properties
 	 */
-	public String getTitle() {
-		return title;
+	public List<DealProperty> getProperties() {
+		return properties;
 	}
 
 	/**
-	 * @param title the title to set
+	 * @param properties the properties to set
 	 */
-	public void setTitle(String title) {
-		this.title = title;
+	public void setProperties(List<DealProperty> properties) {
+		this.properties = properties;
 	}
 
 	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	/**
-	 * @return the originalPrice
-	 */
-	public int getOriginalPrice() {
-		return originalPrice;
-	}
-
-	/**
-	 * @param originalPrice the originalPrice to set
-	 */
-	public void setOriginalPrice(int originalPrice) {
-		this.originalPrice = originalPrice;
-	}
-
-	/**
-	 * @return the discount
-	 */
-	public int getDiscount() {
-		return discount;
-	}
-
-	/**
-	 * @param discount the discount to set
-	 */
-	public void setDiscount(int discount) {
-		this.discount = discount;
-	}
-
-	/**
-	 * @return the dealPrice
-	 */
-	public int getDealPrice() {
-		return dealPrice;
-	}
-
-	/**
-	 * @param dealPrice the dealPrice to set
-	 */
-	public void setDealPrice(int dealPrice) {
-		this.dealPrice = dealPrice;
-	}
-
-	/**
-	 * @return the category
+	 * @return the categoryGroup
 	 */	
-	public Category getCategory() {
-		return category;
+	public List<CategoryGroup> getCategoryGroups() {
+		return categoryGroups;
 	}
 
 	/**
-	 * @param category the category to set
+	 * @param categoryGroup the categoryGroup to set
 	 */
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCategoryGroup(List<CategoryGroup> categoryGroups) {
+		this.categoryGroups = categoryGroups;
 	}
 
 //	/**

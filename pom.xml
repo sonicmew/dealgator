@@ -35,6 +35,8 @@
         <arquillian.version>1.0.0.Alpha5</arquillian.version>
         <jboss-javaee6-spec.version>1.0.0.Final</jboss-javaee6-spec.version>
         <javaee6.web.spec.version>2.0.0.Final</javaee6.web.spec.version>
+        <version.org.primefaces>3.5</version.org.primefaces>		
+		<version.org.primefaces.themes.cupertino>1.0.8</version.org.primefaces.themes.cupertino>
     </properties>
 
     <repositories>
@@ -133,11 +135,15 @@
         	<scope>provided</scope>
         </dependency>
         <dependency>
-        	<groupId>org.jboss.spec.javax.faces</groupId>
-        	<artifactId>jboss-jsf-api_2.0_spec</artifactId>
-        	<scope>provided</scope>
-        	<optional>false</optional>
-        </dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>${version.org.primefaces}</version>
+		</dependency>
+        <dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>cupertino</artifactId>
+			<version>${version.org.primefaces.themes.cupertino}</version>
+		</dependency>
     </dependencies>
 
     <build>

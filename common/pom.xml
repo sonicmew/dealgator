@@ -7,4 +7,5 @@
   </parent>
   <artifactId>common</artifactId>
   <name>common</name>
+  <groupId>com.giventime.dealgator</groupId>
 </project>

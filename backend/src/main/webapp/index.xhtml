@@ -3,10 +3,90 @@
    xmlns:ui="http://java.sun.com/jsf/facelets"
    xmlns:f="http://java.sun.com/jsf/core"
    xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
    template="/WEB-INF/templates/default.xhtml">
    <ui:define name="content">
      	
-     	<h:outputText value="#{adminBean.helloAdmin()}"/>
+	     	<p:tabView id="adminTab" dynamic="true">
+	     	
+	     		<p:tab id="configTab" title="Configuration">
+	     			<h:form id="configForm">
+	     				
+	     				<div class="formBox">
+	     					<p:dataTable id="configurations" value="#{configurationBean.dataModel}" var="config" itemType="none">
+	     						<p:column headerText="Name" width="80%">
+		     						<h:outputText value="#{config.name}"/>
+	     						</p:column>
+	     						<p:column>
+		     						<p:commandButton id="updateButton" action="#{configurationBean.update}" value="Update" ajax="true" update="@form"/> 	     						
+	     						</p:column>
+	     						<p:column>
+		     						<p:commandButton action="#{configurationBean.activateConfiguration}" value="Activate"/>
+	     						</p:column>
+	     						<p:column>
+		     						<p:commandButton action="#{configurationBean.delete}" value="Delete"/>
+	     						</p:column>
+	     					</p:dataTable>
+	     					
+	     					<p:panel id="settingBox" columns="1" rendered="#{configurationBean.selectedInfo != null}" >
+	     					    <f:facet name="header">  
+        							Update settings
+    							</f:facet>
+	     						<p:dataList id="settings" value="#{configurationBean.selectedInfo.settings}" var="setting">
+		     						<p:outputLabel value="#{setting.name}"/>
+	     							<h:outputText value="#{setting.value}"/>
+	     						</p:dataList>
+	     						<p:commandButton id="saveButton" action="#{configurationBean.save()}" value="Save" ajax="true" update="@form"/>
+	     						<p:commandButton id="revertButton" action="#{configurationBean.revert()}" value="Revert" ajax="true" update="@form"/>	     						
+	     					</p:panel>
+	     				</div>
+					</h:form>	     		
+	     		</p:tab>
+	     			
+	     		<p:tab title="Manage deals">
+	     		
+	     		</p:tab>
+	     			
+	     		<p:tab id="categoryGroupTab" title="Manage category groups">
+	     			<h:form id="categoryForm">
+	     				
+	     				<div class="formBox">
+	     					<p:dataTable id="categoryGroups" value="#{categoryGroupBean.dataModel}" var="catGroup" itemType="none">
+	     						<p:column headerText="Category Group name" width="80%">
+	     							<h:outputText value="#{catGroup.name}"/>
+	     						</p:column>
+	     						<p:column>
+		     						<p:commandButton id="updateButton" action="#{categoryGroupBean.update}" value="Update" ajax="true" update="@form"/> 			     						
+	     						</p:column>
+	     						<p:column>
+		     						<p:commandButton action="#{categoryGroupBean.delete}" value="Delete"/>
+	     						</p:column>
+	     						<p:column>	     							
+		     						<p:commandButton action="#{categoryGroupBean.enable}" value="Enable" rendered="#{!catGroup.enabled}"/>	     						
+	     							<p:commandButton action="#{categoryGroupBean.disable}" value="Disable" rendered="#{catGroup.enabled}"/>
+	     						</p:column>
+	     					</p:dataTable>
+	     					
+	     					<p:panel id="categoryBox" columns="1" rendered="#{categoryGroupBean.selectedInfo != null}" >
+	     					    <f:facet name="header">
+        							Matched categories
+    							</f:facet>
+	     						<p:dataList id="categories" value="#{categoryGroupBean.selectedInfo.categories}" var="category">
+		     						<p:outputLabel value="#{category}"/>	     						
+	     						</p:dataList>
+	     						<p:commandButton id="saveButton" action="#{categoryGroupBean.save}" value="Save" ajax="true" update="@form"/>
+	     						<p:commandButton id="revertButton" action="#{categoryGroupBean.revert}" value="Revert" ajax="true" update="@form"/>	     						
+	     					</p:panel>
+	     				</div>
+					</h:form>
+	     		</p:tab>
+	     			
+	     		<p:tab title="Manage shops">
+	     		
+	     		</p:tab>	
+	     	
+	     	</p:tabView>
+
      	
    </ui:define>
 </ui:composition>

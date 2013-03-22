@@ -7,10 +7,12 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import com.giventime.dealgator.persistence.dao.DealsDao;
 import com.giventime.dealgator.common.dto.DealInfo;
+import com.giventime.dealgator.common.dto.DealPropertyInfo;
 import com.giventime.dealgator.common.dto.SearchCriteria;
+import com.giventime.dealgator.persistence.dao.DealsDao;
 import com.giventime.dealgator.persistence.model.Deal;
+import com.giventime.dealgator.persistence.model.DealProperty;
 import com.giventime.dealgator.services.api.DealServices;
 import com.giventime.dealgator.services.feed.DealsFeedContentHandler;
 import com.giventime.dealgator.services.feed.FeedParseException;
@@ -43,11 +45,12 @@ public class DealServicesImpl implements DealServices {
     	for (Deal deal : deals) {
     		DealInfo info = new DealInfo();
     		info.setId(deal.getId());
-    		info.setTitle(deal.getTitle());
-    		info.setDescription(deal.getDescription());
-    		info.setOriginalPrice(deal.getOriginalPrice());
-    		info.setDiscount(deal.getDiscount());
-    		info.setDealPrice(deal.getDealPrice());
+    		for (DealProperty prop : deal.getProperties()) {
+    			DealPropertyInfo propInfo = new DealPropertyInfo();
+    			propInfo.setName(prop.getName());
+    			propInfo.setValue(prop.getValue());
+    			info.getProperties().add(propInfo);
+    		}
     		infos.add(info);
     	}
     	return infos;
@@ -62,11 +65,12 @@ public class DealServicesImpl implements DealServices {
 		Deal deal = dealsDao.byId(dealId);
 		DealInfo info = new DealInfo();
 		info.setId(deal.getId());
-		info.setTitle(deal.getTitle());
-		info.setDescription(deal.getDescription());
-		info.setOriginalPrice(deal.getOriginalPrice());
-		info.setDiscount(deal.getDiscount());
-		info.setDealPrice(deal.getDealPrice());
+		for (DealProperty prop : deal.getProperties()) {
+			DealPropertyInfo propInfo = new DealPropertyInfo();
+			propInfo.setName(prop.getName());
+			propInfo.setValue(prop.getValue());
+			info.getProperties().add(propInfo);
+		}
 		return info;
 	}
 
@@ -91,14 +95,12 @@ public class DealServicesImpl implements DealServices {
 	 * 
 	 * @param deals
 	 */
-	private void persistDeals(List<DealInfo> deals) {
-		for (DealInfo dealInfo : deals) {
+	private void persistDeals(List<DealInfo> dealInfos) {
+		for (DealInfo dealInfo : dealInfos) {
 			Deal deal = new Deal();
-			deal.setTitle(dealInfo.getTitle());
-			deal.setDescription(dealInfo.getDescription());
-			deal.setOriginalPrice(deal.getOriginalPrice());
-			deal.setDiscount(dealInfo.getDiscount());
-			deal.setDealPrice(dealInfo.getDealPrice());
+			for (DealPropertyInfo propInfo : dealInfo.getProperties()) {
+				deal.getProperties().add(new DealProperty(propInfo.getName(), propInfo.getValue()));
+			}
 			dealsDao.addDeal(deal);
 		}
 	}

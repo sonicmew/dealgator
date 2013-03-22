@@ -10,30 +10,30 @@ import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
-import com.giventime.dealgator.persistence.model.Category;
+import com.giventime.dealgator.persistence.model.CategoryGroup;
 
 /**
  * @author ANDROUTA
  *
  */
 @Stateless
-public class CategoryDao extends BaseDao<Category> {
+public class CategoryDao extends BaseDao<CategoryGroup> {
 
 	/**
 	 * 
 	 */
 	public CategoryDao() {
-		super(Category.class);
+		super(CategoryGroup.class);
 	}
 
 	/**
 	 * 
 	 * @return
 	 */
-	public List<Category> fetchCategories() {
+	public List<CategoryGroup> fetchCategoryGroups() {
 		CriteriaBuilder criteria = getEntityManager().getCriteriaBuilder();
-		CriteriaQuery<Category> query = criteria.createQuery(Category.class);
-		query.from(Category.class);
+		CriteriaQuery<CategoryGroup> query = criteria.createQuery(CategoryGroup.class);
+		query.from(CategoryGroup.class);
 		
 		try {
 			return getEntityManager().createQuery(query).getResultList();

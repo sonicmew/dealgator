@@ -7,4 +7,5 @@
   </parent>
   <artifactId>services</artifactId>
   <name>services</name>
+  <groupId>com.giventime.dealgator</groupId>
 </project>

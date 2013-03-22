@@ -3,7 +3,10 @@ package com.giventime.dealgator.persistence.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 
 /**
  * @author sonicmew
@@ -61,6 +64,17 @@ public abstract class BaseDao<E> {
 		return this.getEntityManager().merge(object);
 	}	
 	
+	public List<E> fetchAll() {
+		CriteriaBuilder criteria = getEntityManager().getCriteriaBuilder();
+		CriteriaQuery<E> query = criteria.createQuery(entityClass);
+		query.from(entityClass);
+		
+		try {
+			return getEntityManager().createQuery(query).getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 	
 	/**
 	 * Saves a list of objects

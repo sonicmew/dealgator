@@ -3,103 +3,60 @@
  */
 package com.giventime.dealgator.common.dto;
 
-import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * @author ANDROUTA
  *
  */
-public class DealInfo {
+public class DealInfo implements EntityInfo {
 
 	private Long id;
-	private String title;
-	private String description;
-	private int originalPrice;
-	private int discount;
-	private int dealPrice;
-
+	private List<DealPropertyInfo> properties = new ArrayList<DealPropertyInfo>();
+	private List<CategoryGroupInfo> categoryGroups = new ArrayList<CategoryGroupInfo>();
+	
 	/**
 	 * @return the id
 	 */
 	public Long getId() {
 		return id;
 	}
-
+	
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	/**
-	 * @return the title
+	 * @return the properties
 	 */
-	public String getTitle() {
-		return title;
+	public List<DealPropertyInfo> getProperties() {
+		return properties;
 	}
-
+	
 	/**
-	 * @param title the title to set
+	 * @param properties the properties to set
 	 */
-	public void setTitle(String title) {
-		this.title = title;
+	public void setProperties(List<DealPropertyInfo> properties) {
+		this.properties = properties;
 	}
-
+	
 	/**
-	 * @return the description
+	 * @return the categoryGroups
 	 */
-	public String getDescription() {
-		return description;
+	public List<CategoryGroupInfo> getCategoryGroups() {
+		return categoryGroups;
 	}
-
+	
 	/**
-	 * @param description the description to set
+	 * @param categoryGroups the categoryGroups to set
 	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	/**
-	 * @return the originalPrice
-	 */
-	public int getOriginalPrice() {
-		return originalPrice;
-	}
-
-	/**
-	 * @param originalPrice the originalPrice to set
-	 */
-	public void setOriginalPrice(int originalPrice) {
-		this.originalPrice = originalPrice;
-	}
-
-	/**
-	 * @return the discount
-	 */
-	public int getDiscount() {
-		return discount;
-	}
-
-	/**
-	 * @param discount the discount to set
-	 */
-	public void setDiscount(int discount) {
-		this.discount = discount;
-	}
-
-	/**
-	 * @return the dealPrice
-	 */
-	public int getDealPrice() {
-		return dealPrice;
-	}
-
-	/**
-	 * @param dealPrice the dealPrice to set
-	 */
-	public void setDealPrice(int dealPrice) {
-		this.dealPrice = dealPrice;
+	public void setCategoryGroups(List<CategoryGroupInfo> categoryGroups) {
+		this.categoryGroups = categoryGroups;
 	}
 	
 }

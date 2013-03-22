@@ -1,6 +1,9 @@
 package com.giventime.dealgator.persistence.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -8,19 +11,26 @@ import javax.persistence.*;
  *
  */
 @Entity
+@Table(name = "configurations")
 public class Configuration implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String configurationName;
+	private String name;
 	
-	private String applicationUrl;
+	private boolean active;
 	
-	private String active;	
+	@OneToMany
+	private List<Setting> settings = new ArrayList<Setting>();
 	
+	/**
+	 * 
+	 */
 	public Configuration() {
 		super();
 	}
@@ -40,45 +50,45 @@ public class Configuration implements Serializable {
 	}
 
 	/**
-	 * @return the configurationName
+	 * @return the name
 	 */
-	public String getConfigurationName() {
-		return configurationName;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param configurationName the configurationName to set
+	 * @param name the name to set
 	 */
-	public void setConfigurationName(String configurationName) {
-		this.configurationName = configurationName;
-	}
-
-	/**
-	 * @return the applicationUrl
-	 */
-	public String getApplicationUrl() {
-		return applicationUrl;
-	}
-
-	/**
-	 * @param applicationUrl the applicationUrl to set
-	 */
-	public void setApplicationUrl(String applicationUrl) {
-		this.applicationUrl = applicationUrl;
+	public void setName(String configurationName) {
+		this.name = configurationName;
 	}
 
 	/**
 	 * @return the active
 	 */
-	public String getActive() {
+	public boolean getActive() {
 		return active;
 	}
 
 	/**
 	 * @param active the active to set
 	 */
-	public void setActive(String active) {
+	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	/**
+	 * @return the settings
+	 */
+	public List<Setting> getSettings() {
+		return settings;
+	}
+
+	/**
+	 * @param settings the settings to set
+	 */
+	public void setSettings(List<Setting> settings) {
+		this.settings = settings;
 	}	
    
 }

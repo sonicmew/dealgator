@@ -12,7 +12,7 @@ import java.util.List;
 public class SearchCriteria {
 
 	private List<String> searchTerms;
-	private CategoryInfo category;
+	private CategoryGroupInfo category;
 
 	/**
 	 * 
@@ -39,14 +39,14 @@ public class SearchCriteria {
 	/**
 	 * @return the category
 	 */
-	public CategoryInfo getCategory() {
+	public CategoryGroupInfo getCategory() {
 		return category;
 	}
 
 	/**
 	 * @param category the category to set
 	 */
-	public void setCategory(CategoryInfo category) {
+	public void setCategory(CategoryGroupInfo category) {
 		this.category = category;
 	}
 	

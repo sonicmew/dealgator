@@ -6,4 +6,23 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>frontend</artifactId>
+  <groupId>com.giventime.dealgator</groupId>
+  
+  <dependencies>
+     <dependency>
+      	<groupId>com.giventime.dealgator</groupId>
+      	<artifactId>persistence</artifactId>
+      	<version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+      	<groupId>com.giventime.dealgator</groupId>
+      	<artifactId>common</artifactId>
+      	<version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+      	<groupId>com.giventime.dealgator</groupId>
+      	<artifactId>services</artifactId>
+      	<version>0.0.1-SNAPSHOT</version>
+      </dependency>
+  </dependencies>
 </project>
