@@ -4,6 +4,7 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui"
+    xmlns:a="http://java.sun.com/jsf/composite/comp"
     template="/WEB-INF/templates/default.xhtml">
     
     <ui:define name="sideContent">
@@ -16,12 +17,18 @@
     
     <ui:define name="content">
 
-		<h:outputText value="#{dealsBean.beanName}" />
+		<h:form>
 
-        <p:selectOneMenu value="#{dealsBean.searchCriteria.category}">
-        	<f:selectItem itemLabel="Choose your destiny"/>
-        	<f:selectItems value="#{applicationBean.categorySelectItems}"/>
-        </p:selectOneMenu>
+	        <p:selectOneMenu value="#{dealsBean.searchCriteria.category}">
+	        	<f:selectItem itemLabel="Choose your destiny"/>
+	        	<f:selectItems value="#{applicationBean.categorySelectItems}"/>
+	        </p:selectOneMenu>
+	       	
+	       	<p:dataGrid id="deals" value="#{dealsBean.dataModel}" var="deal" columns="3">
+				<a:dealThumbnail deal="#{deal}"/>
+			</p:dataGrid>
+		
+		</h:form> 
        	
     </ui:define>
 </ui:composition>

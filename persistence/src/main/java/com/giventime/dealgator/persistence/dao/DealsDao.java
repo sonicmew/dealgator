@@ -14,7 +14,6 @@ import javax.persistence.criteria.Root;
 
 import com.giventime.dealgator.common.dto.SearchCriteria;
 import com.giventime.dealgator.persistence.model.Deal;
-import com.giventime.dealgator.persistence.model.Deal_;
 
 /**
  * @author ANDROUTA

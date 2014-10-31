@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://java.sun.com/jsf/composite/comp"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+		<composite:interface>
+			<composite:attribute name="deal" required="true"/>			
+		</composite:interface>
+
+		<composite:implementation>
+
+			<h:outputText value="#{cc.attrs.deal.id}" />
+			
+			<div class="dealBox">
+				<div class="dealHead">
+					<span> Προσφορες Shop name goes here </span>
+				</div>
+				<div class="share">							
+					<div class="fbShare24"> </div>
+				</div>
+				<div class="dealImgBox">					
+						<a rel="nofollow" title="#{cc.attrs.deal.getTitle()}">
+							<img alt="#{cc.attrs.deal.getTitle()}" src="#{cc.attrs.deal.getImageUrl()}" class="dealImg"/>
+						</a>
+				</div>
+				
+				<div class="dealTitle">
+					<h4>	 					
+						<h:outputText value="#{cc.attrs.deal.getTitle()}"/>					
+					</h4>
+				</div>
+				
+				<div class="dealDetails">
+					<div class="dealPrice dealDetail">
+						<span class="dealLabel"> Shop name </span>
+						<span class="dealField fright"><h:outputText value="#{cc.attrs.deal.getPrice()}"/>€</span>
+					</div>
+					<div class="dealPurchases dealDetail">
+						<span class="dealLabel"> Αγορές: </span>
+						<span class="dealField fright"> <h:outputText value="#{cc.attrs.deal.getBought()}"/></span>
+					</div>
+					<div class="dealCategory dealDetail">
+						<span class="dealLabel"> Κατηγορία: </span>								
+						<span class="dealField fright">Ξενοδοχεία</span>
+					</div>
+					<div class="dealEnd dealDetail">
+						<span class="dealLabel"> Λήγει σε: </span>
+						<span class="dealField fright">6 Ημέρες 23 Ώρες 39 Λεπτά</span>
+					</div>
+					<div class="dealDiscount dealDetail">
+						<span class="dealLabel"> Έκπτωση: </span>
+						<span class="dealField fright"><h:outputText value="#{cc.attrs.deal.getDiscount()}"/>%</span>
+					</div>
+					<div class="dealDetail">
+						<span class="dealField">
+							Περισσότερα για την <p:commandLink target="_blank" title="Λεπτομέρειες προσφορας" action="#{dealsBean.view(cc.attrs.deal.id)}" ajax="false"> προσφορα </p:commandLink>
+						</span>
+					</div>
+				</div>
+			</div>
+
+		</composite:implementation>
+	
+</html>

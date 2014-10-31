@@ -43,15 +43,7 @@ public class DealServicesImpl implements DealServices {
     	List<DealInfo> infos = new ArrayList<DealInfo>();
     	List<Deal> deals = dealsDao.searchDeals(searchCriteria);
     	for (Deal deal : deals) {
-    		DealInfo info = new DealInfo();
-    		info.setId(deal.getId());
-    		for (DealProperty prop : deal.getProperties()) {
-    			DealPropertyInfo propInfo = new DealPropertyInfo();
-    			propInfo.setName(prop.getName());
-    			propInfo.setValue(prop.getValue());
-    			info.getProperties().add(propInfo);
-    		}
-    		infos.add(info);
+    		infos.add(toDTO(deal));
     	}
     	return infos;
     }
@@ -62,18 +54,27 @@ public class DealServicesImpl implements DealServices {
      */
 	@Override
 	public DealInfo getDealById(long dealId) {
-		Deal deal = dealsDao.byId(dealId);
+		Deal deal = dealsDao.byId(dealId);		
+		return toDTO(deal);
+	}
+
+	/**
+	 * 
+	 * @param deal
+	 * @return
+	 */
+	private DealInfo toDTO(Deal deal) {
 		DealInfo info = new DealInfo();
 		info.setId(deal.getId());
 		for (DealProperty prop : deal.getProperties()) {
 			DealPropertyInfo propInfo = new DealPropertyInfo();
 			propInfo.setName(prop.getName());
 			propInfo.setValue(prop.getValue());
-			info.getProperties().add(propInfo);
+			info.getPropertyMap().put(prop.getName(), propInfo);
 		}
 		return info;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.giventime.dealgator.services.api.DealServices#importDeals(java.net.URL)
@@ -98,7 +99,7 @@ public class DealServicesImpl implements DealServices {
 	private void persistDeals(List<DealInfo> dealInfos) {
 		for (DealInfo dealInfo : dealInfos) {
 			Deal deal = new Deal();
-			for (DealPropertyInfo propInfo : dealInfo.getProperties()) {
+			for (DealPropertyInfo propInfo : dealInfo.getPropertyMap().values()) {
 				deal.getProperties().add(new DealProperty(propInfo.getName(), propInfo.getValue()));
 			}
 			dealsDao.addDeal(deal);

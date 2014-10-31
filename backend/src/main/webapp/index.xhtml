@@ -43,8 +43,20 @@
 					</h:form>	     		
 	     		</p:tab>
 	     			
-	     		<p:tab title="Manage deals">
-	     		
+	     		<p:tab id="dealTab" title="Manage dealsx">
+	     			<h:form id="dealForm">	     		
+	     				
+	     				<div class="formBox">
+	     					<ui:repeat id="deals" value="#{dealBean.dataModel}" var="deal">
+	     						<p:dataGrid id="dealProps" value="#{deal.propertyMap}" var="property" columns="1">
+	     							
+	     							<h:outputText value="#{property.key}: " style="font-weight: bold;"/>
+	     							<h:outputText value="#{property.value}" />
+	     						</p:dataGrid>
+	     					</ui:repeat>
+	     				</div>
+	     				
+	     			</h:form>
 	     		</p:tab>
 	     			
 	     		<p:tab id="categoryGroupTab" title="Manage category groups">
@@ -83,6 +95,14 @@
 	     			
 	     		<p:tab title="Manage shops">
 	     		
+	     		</p:tab>
+	     			
+	     		<p:tab title="Import deals">
+	     			<h:form id="importForm">
+	     			
+	     				<p:commandButton action="#{dealImportBean.importDeals}" value="Import!"/>
+	     			
+	     			</h:form>
 	     		</p:tab>	
 	     	
 	     	</p:tabView>

@@ -4,7 +4,9 @@
 package com.giventime.dealgator.common.dto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -14,8 +16,8 @@ import java.util.List;
 public class DealInfo implements EntityInfo {
 
 	private Long id;
-	private List<DealPropertyInfo> properties = new ArrayList<DealPropertyInfo>();
-	private List<CategoryGroupInfo> categoryGroups = new ArrayList<CategoryGroupInfo>();
+	private Map<String, DealPropertyInfo> propertyMap = new HashMap<>();
+	private List<CategoryGroupInfo> categoryGroups = new ArrayList<>();
 	
 	/**
 	 * @return the id
@@ -31,18 +33,16 @@ public class DealInfo implements EntityInfo {
 		this.id = id;
 	}
 	
-	/**
-	 * @return the properties
-	 */
-	public List<DealPropertyInfo> getProperties() {
-		return properties;
+	public Map<String, DealPropertyInfo> getPropertyMap() {
+		return propertyMap;
 	}
 	
-	/**
-	 * @param properties the properties to set
-	 */
-	public void setProperties(List<DealPropertyInfo> properties) {
-		this.properties = properties;
+	public void setPropertyMap(Map<String, DealPropertyInfo> propertyMap) {
+		this.propertyMap = propertyMap;
+	}
+	
+	public DealPropertyInfo getProperty(DealProperty propertyName) {		
+		return getPropertyMap().get(propertyName.getPropertyName());
 	}
 	
 	/**
@@ -59,4 +59,31 @@ public class DealInfo implements EntityInfo {
 		this.categoryGroups = categoryGroups;
 	}
 	
+	public String getTitle() {
+		return getProperty(DealProperty.DEAL_TITLE).getValue();
+	}
+	
+	public String getOriginalPrice() {
+		return getProperty(DealProperty.DEAL_ORIGINAL_PRICE).getValue();
+	}
+	
+	public String getPrice() {
+		return getProperty(DealProperty.DEAL_PRICE).getValue();
+	}
+	
+	public String getDiscount() {
+		return getProperty(DealProperty.DEAL_DISCOUNT).getValue();
+	}
+	
+	public String getBought() {
+		return getProperty(DealProperty.DEAL_BOUGHT).getValue();
+	}
+	
+	public String getDealUrl() {
+		return getProperty(DealProperty.TRACKING_URL).getValue();
+	}
+	
+	public String getImageUrl() {
+		return getProperty(DealProperty.DEAL_IMAGE_URL).getValue();
+	}
 }

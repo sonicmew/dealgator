@@ -14,7 +14,7 @@ import com.giventime.dealgator.common.dto.EntityInfo;
  */
 @Named("adminBean")
 public abstract class AdminBean<T extends EntityInfo> {
-
+	
 	DataModel<T> dataModel;
 	T selectedInfo;
 	

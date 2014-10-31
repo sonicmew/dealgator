@@ -16,13 +16,13 @@ import javax.inject.Named;
 import com.giventime.dealgator.common.dto.CategoryGroupInfo;
 import com.giventime.dealgator.services.api.CategoryServices;
 
-@Named("applicationBean")
-@ApplicationScoped
-@Singleton
 /**
  * @author ANDROUTA
  *
  */
+@Named("applicationBean")
+@ApplicationScoped
+@Singleton
 public class ApplicationBean {
 
 	@Inject

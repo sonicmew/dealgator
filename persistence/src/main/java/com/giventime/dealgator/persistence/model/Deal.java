@@ -25,7 +25,8 @@ public class Deal implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="deal_id")
 	private List<DealProperty> properties = new ArrayList<DealProperty>();
 	
 	@ManyToMany(mappedBy="deals")

@@ -1,0 +1,112 @@
+li.deal {							
+	display: inline-block;
+	padding: 5px;
+	border: 1px solid #eee;
+	background: none #f9f9f9;
+	margin: 3px 2px 4px;
+	text-align: justify;
+	vertical-align: top;
+	-moz-transition: all 0.3s ease 0s;	
+}
+
+li.rowLast {
+	margin-right: 0;
+}
+
+li.deal:hover {
+	background: #EBF5F7;
+}
+
+div.dealHead {
+	margin: -4px 0 4px;
+	color: #bbb;
+}
+
+div.dealBox {
+	width: 231px;
+	max-height: 385px;
+}
+
+div.share {
+	margin: -3px 0 2px;
+	text-align: right;
+}
+
+div.fbShare24 {
+	background: url(images/Facebook24.png) no-repeat scroll 0 0 transparent;
+	margin-top: -24px;
+	padding: 24px 12px 0;	
+	cursor: pointer;
+	float: right;
+}
+
+div.dealImgBox {
+	border: 2px solid #eee;				
+	overflow: hidden;
+	height: 140px;
+}
+
+img.dealImg {				
+	width: 230px;				
+}
+
+div.dealTitle {
+	height: 90px;
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	padding: 0px 2px;
+	font: 12px/16px "Georgia","Lucida Grande","Trebuchet MS",Serif;	
+	color: #3596B6;
+	cursor: pointer;
+}
+
+div.dealTitle:hover {
+	color: #276C82;
+}
+
+div.dealTitle h4 {
+	font-weight: normal;
+}
+
+div.dealDetail {
+	padding: 1px 0px;
+	border-bottom: 1px solid #ddd;
+}
+
+div.dealDetails {
+	font: 12px/16px "Lucida Grande","Trebuchet MS",Serif;
+}
+
+.dealField {
+	margin: 1px;
+	padding: 0px 0px;
+}
+span.dealShop {
+	font: 16px/18px "Lucida Grande","Trebuchet MS",Serif;
+	color: #606060;				
+}
+div.dealPrice {	
+	line-height: 16px;	
+}
+
+div.dealPrice span.dealLabel {
+	font: 14px/16px "Lucida Grande","Trebuchet MS",Serif;
+	font-weight: bold;
+}
+
+div.dealPrice span.dealField {
+	color: #3596B6;
+	//color: #2771aa;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: -2px;
+}
+
+span.dealEnd {				
+}
+span.dealGross {
+	color: #2771aa;
+	font: 16px/18px "Lucida Grande","Trebuchet MS",Serif;
+	font-size: 16px;
+}

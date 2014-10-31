@@ -30,7 +30,7 @@ public class FeedParser<T extends DefaultHandler> {
 	public FeedParser(URL feedUrl, T handler) throws FeedParseException {
 		try {
 			this.feedUrl = feedUrl;
-			this.reader = XMLReaderFactory.createXMLReader();
+			this.reader = XMLReaderFactory.createXMLReader();			
 			this.reader.setContentHandler(handler);
 			this.reader.setErrorHandler(handler);
 		} catch (SAXException e) {
@@ -44,7 +44,9 @@ public class FeedParser<T extends DefaultHandler> {
 	 */
 	public void parse() throws FeedParseException {
 		try {			
-			reader.parse(new InputSource(getFeedInputStream()));			
+			InputSource is = new InputSource(getFeedInputStream());
+			is.setEncoding("UTF-8");
+			reader.parse(is);
 		} catch (SAXException e) {			
 			throw new FeedParseException(e.getMessage());
 		} catch (IOException e) {

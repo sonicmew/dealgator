@@ -12,6 +12,21 @@ public class DealPropertyInfo implements EntityInfo {
 	private String name;
 	private String value;
 	
+	public DealPropertyInfo() {
+		super();
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @param value
+	 */
+	public DealPropertyInfo(String name, String value) {
+		super();
+		this.name = name;
+		this.value = value;
+	}
+
 	/**
 	 * @return the name
 	 */

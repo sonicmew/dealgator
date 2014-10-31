@@ -12,16 +12,16 @@ import javax.persistence.*;
 @Access(AccessType.FIELD)
 public class DealProperty implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+		
 	private String name;
 	
+	@Column(length=10000)
 	private String value;
 	
 	public DealProperty() {
