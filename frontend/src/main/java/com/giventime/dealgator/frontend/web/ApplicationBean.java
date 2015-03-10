@@ -13,7 +13,7 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.giventime.dealgator.common.dto.CategoryGroupInfo;
+import com.giventime.dealgator.common.dto.CategoryInfo;
 import com.giventime.dealgator.services.api.CategoryServices;
 
 /**
@@ -49,8 +49,8 @@ public class ApplicationBean {
 	 */
 	private void initializeCategories() {
 		categorySelectItems = new ArrayList<SelectItem>();
-		List<CategoryGroupInfo> categories = categoryServices.getAllCategoryGroups();
-		for (CategoryGroupInfo cat : categories) {
+		List<CategoryInfo> categories = categoryServices.getAllCategories();
+		for (CategoryInfo cat : categories) {
 			SelectItem item = new SelectItem(cat, cat.getName());
 			categorySelectItems.add(item);
 		}

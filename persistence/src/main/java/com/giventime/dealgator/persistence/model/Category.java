@@ -1,6 +1,8 @@
 package com.giventime.dealgator.persistence.model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -19,13 +21,15 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@Column(name="test")
+	private String test;
+	
 	private String name;
 	
 	private boolean enabled;
 	
-	@ManyToOne(optional=true)
-	@JoinColumn(name="category_group_id")
-	private CategoryGroup categoryGroup;
+	@ManyToMany	
+	private List<Deal> deals;
 
 	public Category() {
 		super();
@@ -71,20 +75,6 @@ public class Category implements Serializable {
 	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
-	}
-
-	/**
-	 * @return the categoryGroup
-	 */
-	public CategoryGroup getCategoryGroup() {
-		return categoryGroup;
-	}
-
-	/**
-	 * @param categoryGroup the categoryGroup to set
-	 */
-	public void setCategoryGroup(CategoryGroup categoryGroup) {
-		this.categoryGroup = categoryGroup;
 	}
    
 }

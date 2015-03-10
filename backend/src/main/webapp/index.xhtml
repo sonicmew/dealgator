@@ -58,37 +58,27 @@
 	     				
 	     			</h:form>
 	     		</p:tab>
-	     			
-	     		<p:tab id="categoryGroupTab" title="Manage category groups">
+	     		
+	     		<p:tab id="categoryTab" title="Manage categories">
 	     			<h:form id="categoryForm">
 	     				
 	     				<div class="formBox">
-	     					<p:dataTable id="categoryGroups" value="#{categoryGroupBean.dataModel}" var="catGroup" itemType="none">
-	     						<p:column headerText="Category Group name" width="80%">
-	     							<h:outputText value="#{catGroup.name}"/>
+	     					<p:dataTable id="categories" value="#{categoryBean.dataModel}" var="category" itemType="none">
+	     						<p:column headerText="Category name" width="70%">
+	     							<h:outputText value="#{category.name}"/>	     							
 	     						</p:column>
-	     						<p:column>
-		     						<p:commandButton id="updateButton" action="#{categoryGroupBean.update}" value="Update" ajax="true" update="@form"/> 			     						
-	     						</p:column>
-	     						<p:column>
-		     						<p:commandButton action="#{categoryGroupBean.delete}" value="Delete"/>
-	     						</p:column>
+	     						<p:column headerText="Assigned to Category Group">
+	     							<p:selectOneMenu value="#{category.categoryGroupInfo.id}" rendered="#{category.categoryGroupInfo != null}">
+	     								<f:selectItem itemLabel="Select a group"/>
+	     								<f:selectItems value="#{categoryBean.allCategoryGroups}"/>
+	     							</p:selectOneMenu>
+	     						</p:column>	     						
 	     						<p:column>	     							
-		     						<p:commandButton action="#{categoryGroupBean.enable}" value="Enable" rendered="#{!catGroup.enabled}"/>	     						
-	     							<p:commandButton action="#{categoryGroupBean.disable}" value="Disable" rendered="#{catGroup.enabled}"/>
+		     						<p:commandButton action="#{categoryBean.enable}" value="Enable" rendered="#{!category.enabled}"/>	     						
+	     							<p:commandButton action="#{categoryBean.disable}" value="Disable" rendered="#{category.enabled}"/>
 	     						</p:column>
+	     						
 	     					</p:dataTable>
-	     					
-	     					<p:panel id="categoryBox" columns="1" rendered="#{categoryGroupBean.selectedInfo != null}" >
-	     					    <f:facet name="header">
-        							Matched categories
-    							</f:facet>
-	     						<p:dataList id="categories" value="#{categoryGroupBean.selectedInfo.categories}" var="category">
-		     						<p:outputLabel value="#{category}"/>	     						
-	     						</p:dataList>
-	     						<p:commandButton id="saveButton" action="#{categoryGroupBean.save}" value="Save" ajax="true" update="@form"/>
-	     						<p:commandButton id="revertButton" action="#{categoryGroupBean.revert}" value="Revert" ajax="true" update="@form"/>	     						
-	     					</p:panel>
 	     				</div>
 					</h:form>
 	     		</p:tab>

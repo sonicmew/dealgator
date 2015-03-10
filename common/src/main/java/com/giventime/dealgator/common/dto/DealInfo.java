@@ -41,7 +41,7 @@ public class DealInfo implements EntityInfo {
 		this.propertyMap = propertyMap;
 	}
 	
-	public DealPropertyInfo getProperty(DealProperty propertyName) {		
+	private DealPropertyInfo getProperty(DealProperty propertyName) {		
 		return getPropertyMap().get(propertyName.getPropertyName());
 	}
 	

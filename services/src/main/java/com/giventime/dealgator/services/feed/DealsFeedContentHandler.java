@@ -11,8 +11,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.giventime.dealgator.common.dto.DealInfo;
-import com.giventime.dealgator.common.dto.DealPropertyInfo;
+import com.giventime.dealgator.persistence.model.Deal;
 
 /**
  * @author ANDROUTA
@@ -20,14 +19,14 @@ import com.giventime.dealgator.common.dto.DealPropertyInfo;
  */
 public class DealsFeedContentHandler extends DefaultHandler {
 	
-	private List<DealInfo> deals;
+	private List<Deal> deals;
 	private Stack<String> stack;
-	private DealInfo currentDeal;	
+	private Deal currentDeal;	
 	private StringBuffer characters;
 	
 	@Override
 	public void startDocument() throws SAXException {
-		deals = new ArrayList<DealInfo>();
+		deals = new ArrayList<Deal>();
 		stack = new Stack<>();
 	}
 
@@ -40,7 +39,7 @@ public class DealsFeedContentHandler extends DefaultHandler {
 		System.err.println("Start element called for "+localName);
 		stack.push(qName);
 		if (XMLTag.DEAL.getTagName().equals(qName)) {
-			currentDeal = new DealInfo();
+			currentDeal = new Deal();
 		} else if (currentDeal != null) {
 			characters = new StringBuffer();
 			System.err.println("StringBuffer initialized");
@@ -62,13 +61,13 @@ public class DealsFeedContentHandler extends DefaultHandler {
 		if (XMLTag.DEAL.getTagName().equals(qName)) {
 			deals.add(currentDeal);
 		} else if (currentDeal != null) {
-			try {				
-				currentDeal.getPropertyMap().put(stack.peek(), new DealPropertyInfo(stack.peek(), characters.toString()));
-				characters = null;
+			if (XMLTag.DEAL_ID_LW.getTagName().equals(qName)) {
+				currentDeal.setLinkwiseProductId(characters.toString());
+			} else if (XMLTag.DEAL_TITLE.getTagName().equals(qName)) {				
+				currentDeal.setTitle(characters.toString());
 				System.err.println("StringBuffer reset");
-			} catch (Exception e) {				
-				System.err.println(currentDeal+" "+" "+stack.peek()+" "+characters);				
-			}			
+			}
+			characters = null;			
 		}
 		stack.pop();
 	}
@@ -77,7 +76,7 @@ public class DealsFeedContentHandler extends DefaultHandler {
 	 * 
 	 * @return
 	 */
-	public List<DealInfo> getDeals() {
+	public List<Deal> getDeals() {
 		return deals;
 	}
 

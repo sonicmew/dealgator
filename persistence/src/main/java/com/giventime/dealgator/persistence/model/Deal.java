@@ -2,6 +2,7 @@ package com.giventime.dealgator.persistence.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -25,15 +26,55 @@ public class Deal implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="deal_id")
-	private List<DealProperty> properties = new ArrayList<DealProperty>();
+	@ManyToMany(mappedBy = "deals")
+	private List<Category> categories = new ArrayList<>();
 	
-	@ManyToMany(mappedBy="deals")
-	private List<CategoryGroup> categoryGroups;
+	@ManyToOne
+	@JoinColumn(name = "shop_id")
+	private Shop shop;
 	
-	//@Column(nullable = false)
-	//private Shop shop;
+	@Column(name = "lw_product_id", nullable = false)
+	private String linkwiseProductId;
+	
+	@Column(name = "shop_product_id")
+	private String shopProductId;
+	
+	@Lob
+	@Column(name = "title", columnDefinition = "text")
+	private String title;
+	
+	@Column(name = "description")
+	private String description;
+	
+	@Column(name = "image_url")
+	private String imageUrl;
+	
+	@Column(name = "site_url")
+	private String siteUrl;
+	
+	@Column(name = "tracking_url")
+	private String trackingUrl;
+	
+	@Column(name = "valid_from")
+	private Date validFrom;
+	
+	@Column(name = "valid_to")
+	private Date validTo;
+	
+	@Column(name = "city")
+	private String city;
+	
+	@Column(name = "full_price")
+	private String fullPrice;
+	
+	@Column(name = "price")
+	private String price;
+	
+	@Column(name = "discount")	
+	private String discount;
+	
+	@Column(name = "bought")
+	private String bought;
 
 	/**
 	 * @return the id
@@ -50,45 +91,227 @@ public class Deal implements Serializable {
 	}
 
 	/**
-	 * @return the properties
+	 * @return the categories
 	 */
-	public List<DealProperty> getProperties() {
-		return properties;
+	public List<Category> getCategories() {
+		return categories;
 	}
 
 	/**
-	 * @param properties the properties to set
+	 * @param categories the categories to set
 	 */
-	public void setProperties(List<DealProperty> properties) {
-		this.properties = properties;
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 
 	/**
-	 * @return the categoryGroup
-	 */	
-	public List<CategoryGroup> getCategoryGroups() {
-		return categoryGroups;
+	 * @return the shop
+	 */
+	public Shop getShop() {
+		return shop;
 	}
 
 	/**
-	 * @param categoryGroup the categoryGroup to set
+	 * @param shop the shop to set
 	 */
-	public void setCategoryGroup(List<CategoryGroup> categoryGroups) {
-		this.categoryGroups = categoryGroups;
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 
-//	/**
-//	 * @return the shop
-//	 */
-//	public Shop getShop() {
-//		return shop;
-//	}
-//
-//	/**
-//	 * @param shop the shop to set
-//	 */
-//	public void setShop(Shop shop) {
-//		this.shop = shop;
-//	}
+	/**
+	 * @return the linkwiseProductId
+	 */
+	public String getLinkwiseProductId() {
+		return linkwiseProductId;
+	}
+
+	/**
+	 * @param linkwiseProductId the linkwiseProductId to set
+	 */
+	public void setLinkwiseProductId(String linkwiseProductId) {
+		this.linkwiseProductId = linkwiseProductId;
+	}
+
+	/**
+	 * @return the shopProductId
+	 */
+	public String getShopProductId() {
+		return shopProductId;
+	}
+
+	/**
+	 * @param shopProductId the shopProductId to set
+	 */
+	public void setShopProductId(String shopProductId) {
+		this.shopProductId = shopProductId;
+	}
+
+	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * @return the imageUrl
+	 */
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	/**
+	 * @param imageUrl the imageUrl to set
+	 */
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	/**
+	 * @return the siteUrl
+	 */
+	public String getSiteUrl() {
+		return siteUrl;
+	}
+
+	/**
+	 * @param siteUrl the siteUrl to set
+	 */
+	public void setSiteUrl(String siteUrl) {
+		this.siteUrl = siteUrl;
+	}
+
+	/**
+	 * @return the trackingUrl
+	 */
+	public String getTrackingUrl() {
+		return trackingUrl;
+	}
+
+	/**
+	 * @param trackingUrl the trackingUrl to set
+	 */
+	public void setTrackingUrl(String trackingUrl) {
+		this.trackingUrl = trackingUrl;
+	}
+
+	/**
+	 * @return the validFrom
+	 */
+	public Date getValidFrom() {
+		return validFrom;
+	}
+
+	/**
+	 * @param validFrom the validFrom to set
+	 */
+	public void setValidFrom(Date validFrom) {
+		this.validFrom = validFrom;
+	}
+
+	/**
+	 * @return the validTo
+	 */
+	public Date getValidTo() {
+		return validTo;
+	}
+
+	/**
+	 * @param validTo the validTo to set
+	 */
+	public void setValidTo(Date validTo) {
+		this.validTo = validTo;
+	}
+
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
+	}
+
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	/**
+	 * @return the fullPrice
+	 */
+	public String getFullPrice() {
+		return fullPrice;
+	}
+
+	/**
+	 * @param fullPrice the fullPrice to set
+	 */
+	public void setFullPrice(String fullPrice) {
+		this.fullPrice = fullPrice;
+	}
+
+	/**
+	 * @return the price
+	 */
+	public String getPrice() {
+		return price;
+	}
+
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	/**
+	 * @return the discount
+	 */
+	public String getDiscount() {
+		return discount;
+	}
+
+	/**
+	 * @param discount the discount to set
+	 */
+	public void setDiscount(String discount) {
+		this.discount = discount;
+	}
+
+	/**
+	 * @return the bought
+	 */
+	public String getBought() {
+		return bought;
+	}
+
+	/**
+	 * @param bought the bought to set
+	 */
+	public void setBought(String bought) {
+		this.bought = bought;
+	}
    
 }

@@ -3,19 +3,16 @@
  */
 package com.giventime.dealgator.common.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author ANDROUTA
  *
  */
-public class CategoryGroupInfo implements EntityInfo {
+public class CategoryInfo implements EntityInfo {
 
 	private Long id;
 	private String name;
 	private boolean enabled;
-	private List<CategoryInfo> categories = new ArrayList<CategoryInfo>();
+	private CategoryGroupInfo categoryGroupInfo;
 	
 	/**
 	 * @return the id
@@ -30,7 +27,7 @@ public class CategoryGroupInfo implements EntityInfo {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	/**
 	 * @return the name
 	 */
@@ -44,14 +41,14 @@ public class CategoryGroupInfo implements EntityInfo {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 	/**
 	 * @return the enabled
 	 */
 	public boolean isEnabled() {
 		return enabled;
 	}
-
+	
 	/**
 	 * @param enabled the enabled to set
 	 */
@@ -60,19 +57,17 @@ public class CategoryGroupInfo implements EntityInfo {
 	}
 
 	/**
-	 * @return the categories
+	 * @return the categoryGroupInfo
 	 */
-	public List<CategoryInfo> getCategories() {
-		return categories;
+	public CategoryGroupInfo getCategoryGroupInfo() {
+		return categoryGroupInfo;
 	}
 
 	/**
-	 * @param categories the categories to set
+	 * @param categoryGroupInfo the categoryGroupInfo to set
 	 */
-	public void setCategories(List<CategoryInfo> categories) {
-		this.categories = categories;
+	public void setCategoryGroupInfo(CategoryGroupInfo categoryGroupInfo) {
+		this.categoryGroupInfo = categoryGroupInfo;
 	}
-	
-
 	
 }

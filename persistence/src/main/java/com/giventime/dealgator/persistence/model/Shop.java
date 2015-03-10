@@ -3,11 +3,15 @@
  */
 package com.giventime.dealgator.persistence.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *  
@@ -28,6 +32,9 @@ public class Shop {
 	
 	@Column(nullable = false)	
 	private boolean enabled = true;
+	
+	@OneToMany(mappedBy = "shop")
+	private List<Deal> deals = new ArrayList<>();
 	
 	/**
 	 * 
