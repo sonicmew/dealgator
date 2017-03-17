@@ -7,7 +7,7 @@ package com.giventime.dealgator.common.dto;
  * @author ANDROUTA
  *
  */
-public enum DealProperty {
+public enum DealPropertiesEnum {
 
 	DEAL_ID_LW("lw_product_id"),
 	DEAL_PROG("program"),
@@ -29,7 +29,7 @@ public enum DealProperty {
 	
 	private String propertyName;
 	
-	private DealProperty(String propertyName) {
+	private DealPropertiesEnum(String propertyName) {
 		this.propertyName = propertyName;
 	}
 	

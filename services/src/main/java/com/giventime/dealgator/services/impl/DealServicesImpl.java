@@ -3,13 +3,17 @@ package com.giventime.dealgator.services.impl;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
 import com.giventime.dealgator.common.dto.DealInfo;
+import com.giventime.dealgator.common.dto.DealPropertiesEnum;
+import com.giventime.dealgator.common.dto.DealPropertyInfo;
 import com.giventime.dealgator.common.dto.SearchCriteria;
-import com.giventime.dealgator.persistence.dao.CategoryDao;
 import com.giventime.dealgator.persistence.dao.DealsDao;
 import com.giventime.dealgator.persistence.model.Deal;
 import com.giventime.dealgator.services.api.DealServices;
@@ -26,8 +30,8 @@ public class DealServicesImpl implements DealServices {
 	@Inject
 	private DealsDao dealsDao;
 	
-	@Inject
-	private CategoryDao categoryDao;
+//	@Inject
+//	private CategoryDao categoryDao;
 	
     /**
      * Default constructor. 
@@ -49,7 +53,7 @@ public class DealServicesImpl implements DealServices {
     	}
     	return infos;
     }
-
+    
     /*
      * (non-Javadoc)
      * @see com.giventime.dealgator.services.api.DealServices#getDealById(long)
@@ -67,7 +71,12 @@ public class DealServicesImpl implements DealServices {
 	 */
 	private DealInfo toDTO(Deal deal) {
 		DealInfo info = new DealInfo();
-		info.setId(deal.getId());		
+		info.setId(deal.getId());
+		info.addProperty(new DealPropertyInfo(DealPropertiesEnum.DEAL_ID_LW.getPropertyName(), deal.getLinkwiseProductId()));
+		info.addProperty(new DealPropertyInfo(DealPropertiesEnum.DEAL_TITLE.getPropertyName(), deal.getTitle()));
+		info.addProperty(new DealPropertyInfo(DealPropertiesEnum.DEAL_PRICE.getPropertyName(), deal.getPrice()));
+		info.getDealMetadata().setImportDate(deal.getMetadata().getImportDate());
+		info.getDealMetadata().setUpdateDate(deal.getMetadata().getUpdateDate());
 		return info;
 	}
 	
@@ -92,16 +101,24 @@ public class DealServicesImpl implements DealServices {
 	 * 
 	 * @param deals
 	 */
-	private void processDeals(List<Deal> deals) {
-		for (Deal deal : deals) {
-			validateDeal(deal);
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+	public void processDeals(List<Deal> deals) {
+		final List<Deal> filtered = new ArrayList<>();
+		deals.stream().filter(deal -> !filtered.contains(deal)).forEach(deal -> filtered.add(deal));
+		
+		filtered.stream().filter(deal -> validateDeal(deal)).forEach(deal -> {
 			assignCategory(deal);
 			dealsDao.addDeal(deal);
-		}
+		});
 	}
 	
 	private boolean validateDeal(Deal deal) {
 		return true;
+	}
+	
+	@Override
+	public void deleteAllDeals() {
+		dealsDao.removeAll();
 	}
 	
 	private void assignCategory(Deal deal) {

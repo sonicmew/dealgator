@@ -66,6 +66,8 @@ public class DealsFeedContentHandler extends DefaultHandler {
 			} else if (XMLTag.DEAL_TITLE.getTagName().equals(qName)) {				
 				currentDeal.setTitle(characters.toString());
 				System.err.println("StringBuffer reset");
+			} else if (XMLTag.DEAL_PRICE.getTagName().equals(qName)) {
+				currentDeal.setPrice(characters.toString());
 			}
 			characters = null;			
 		}

@@ -33,4 +33,8 @@ public class DealImportBean {
 		}
 	}
 	
+	public void deleteDeals() {
+		dealServices.deleteAllDeals();
+	}
+	
 }

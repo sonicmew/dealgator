@@ -11,6 +11,12 @@
 		   <h:outputStylesheet name="css/admin-style.css" />
 		</h:head>
 		<h:body>
+			<div id="top">
+				<ui:fragment rendered="#{userSession.user != null}">
+					<h:commandLink action="#{userSession.logout}" value="Logout"/>
+				</ui:fragment>				
+			</div>
+		
 			<div id="container">
 				<div id="content">
 		        

@@ -43,16 +43,25 @@
 					</h:form>	     		
 	     		</p:tab>
 	     			
-	     		<p:tab id="dealTab" title="Manage dealsx">
+	     		<p:tab id="dealTab" title="Manage deals">
 	     			<h:form id="dealForm">	     		
 	     				
 	     				<div class="formBox">
 	     					<ui:repeat id="deals" value="#{dealBean.dataModel}" var="deal">
-	     						<p:dataGrid id="dealProps" value="#{deal.propertyMap}" var="property" columns="1">
-	     							
-	     							<h:outputText value="#{property.key}: " style="font-weight: bold;"/>
+     							<h:outputText value="#{deal.id}: " style="font-weight: bold;"/>     						
+	     						<p:dataGrid id="dealProps" value="#{deal.dealProperties}" var="property" columns="1">
+	     							<h:outputText value="#{property.name}: " style="font-weight: bold;"/>
 	     							<h:outputText value="#{property.value}" />
 	     						</p:dataGrid>
+	     						
+	     						<div>
+	     							<h6>Metadata</h6>
+	     							<div>
+	     								Import date: #{deal.dealMetadata.importDate}	     								
+	     								Update date: #{deal.dealMetadata.updateDate}	     								
+	     							</div>
+	     						</div>
+	     						
 	     					</ui:repeat>
 	     				</div>
 	     				
@@ -91,7 +100,7 @@
 	     			<h:form id="importForm">
 	     			
 	     				<p:commandButton action="#{dealImportBean.importDeals}" value="Import!"/>
-	     			
+	     				<p:commandButton action="#{dealImportBean.deleteDeals}" value="Delete!"/>
 	     			</h:form>
 	     		</p:tab>	
 	     	

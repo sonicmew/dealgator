@@ -17,6 +17,7 @@ public class DealInfo implements EntityInfo {
 
 	private Long id;
 	private Map<String, DealPropertyInfo> propertyMap = new HashMap<>();
+	private DealMetadataInfo dealMetadata = new DealMetadataInfo();
 	private List<CategoryGroupInfo> categoryGroups = new ArrayList<>();
 	
 	/**
@@ -33,6 +34,10 @@ public class DealInfo implements EntityInfo {
 		this.id = id;
 	}
 	
+	public List<DealPropertyInfo> getDealProperties() {
+		return new ArrayList<DealPropertyInfo>(propertyMap.values());
+	}
+	
 	public Map<String, DealPropertyInfo> getPropertyMap() {
 		return propertyMap;
 	}
@@ -41,10 +46,28 @@ public class DealInfo implements EntityInfo {
 		this.propertyMap = propertyMap;
 	}
 	
-	private DealPropertyInfo getProperty(DealProperty propertyName) {		
+	private DealPropertyInfo getProperty(DealPropertiesEnum propertyName) {		
 		return getPropertyMap().get(propertyName.getPropertyName());
 	}
 	
+	public void addProperty(DealPropertyInfo property) {
+		getPropertyMap().put(property.getName(), property);
+	}
+	
+	/**
+	 * @return the dealMetadata
+	 */
+	public DealMetadataInfo getDealMetadata() {
+		return dealMetadata;
+	}
+
+	/**
+	 * @param dealMetadata the dealMetadata to set
+	 */
+	public void setDealMetadata(DealMetadataInfo dealMetadata) {
+		this.dealMetadata = dealMetadata;
+	}
+
 	/**
 	 * @return the categoryGroups
 	 */
@@ -58,32 +81,32 @@ public class DealInfo implements EntityInfo {
 	public void setCategoryGroups(List<CategoryGroupInfo> categoryGroups) {
 		this.categoryGroups = categoryGroups;
 	}
-	
+
 	public String getTitle() {
-		return getProperty(DealProperty.DEAL_TITLE).getValue();
+		return getProperty(DealPropertiesEnum.DEAL_TITLE).getValue();
 	}
 	
 	public String getOriginalPrice() {
-		return getProperty(DealProperty.DEAL_ORIGINAL_PRICE).getValue();
+		return getProperty(DealPropertiesEnum.DEAL_ORIGINAL_PRICE).getValue();
 	}
 	
 	public String getPrice() {
-		return getProperty(DealProperty.DEAL_PRICE).getValue();
+		return getProperty(DealPropertiesEnum.DEAL_PRICE).getValue();
 	}
 	
 	public String getDiscount() {
-		return getProperty(DealProperty.DEAL_DISCOUNT).getValue();
+		return getProperty(DealPropertiesEnum.DEAL_DISCOUNT).getValue();
 	}
 	
 	public String getBought() {
-		return getProperty(DealProperty.DEAL_BOUGHT).getValue();
+		return getProperty(DealPropertiesEnum.DEAL_BOUGHT).getValue();
 	}
 	
 	public String getDealUrl() {
-		return getProperty(DealProperty.TRACKING_URL).getValue();
+		return getProperty(DealPropertiesEnum.TRACKING_URL).getValue();
 	}
 	
 	public String getImageUrl() {
-		return getProperty(DealProperty.DEAL_IMAGE_URL).getValue();
+		return getProperty(DealPropertiesEnum.DEAL_IMAGE_URL).getValue();
 	}
 }

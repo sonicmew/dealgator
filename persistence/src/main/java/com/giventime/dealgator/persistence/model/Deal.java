@@ -19,6 +19,7 @@ public class Deal implements Serializable {
 
 	public Deal() {
 		super();
+		metadata = new DealMetadata();
 	}
 	
 	@Id
@@ -33,6 +34,7 @@ public class Deal implements Serializable {
 	@JoinColumn(name = "shop_id")
 	private Shop shop;
 	
+	// TODO unique?
 	@Column(name = "lw_product_id", nullable = false)
 	private String linkwiseProductId;
 	
@@ -76,6 +78,10 @@ public class Deal implements Serializable {
 	@Column(name = "bought")
 	private String bought;
 
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="metadata_id")
+	private DealMetadata metadata;
+	
 	/**
 	 * @return the id
 	 */
@@ -313,5 +319,52 @@ public class Deal implements Serializable {
 	public void setBought(String bought) {
 		this.bought = bought;
 	}
-   
+
+	public DealMetadata getMetadata() {
+		return metadata;
+	}
+
+	public void setMetadata(DealMetadata metadata) {
+		this.metadata = metadata;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Deal [linkwiseProductId=" + linkwiseProductId + "]";
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((linkwiseProductId == null) ? 0 : linkwiseProductId.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Deal other = (Deal) obj;
+		if (linkwiseProductId == null) {
+			if (other.linkwiseProductId != null)
+				return false;
+		} else if (!linkwiseProductId.equals(other.linkwiseProductId))
+			return false;
+		return true;
+	}
+	
 }

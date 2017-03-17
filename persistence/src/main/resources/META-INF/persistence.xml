@@ -9,7 +9,7 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> 
         -->
         <provider>org.hibernate.ejb.HibernatePersistence</provider>        
-        <jta-data-source>java:jboss/datasources/dealgatorDS</jta-data-source>
+        <jta-data-source>java:jboss/datasources/DealgatorMySqlDS</jta-data-source>
         <properties>
             <!-- Properties for Hibernate (default provider for JBoss AS) -->
             <property name="hibernate.hbm2ddl.auto" value="update" />

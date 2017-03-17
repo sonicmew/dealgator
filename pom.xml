@@ -12,13 +12,23 @@
 
     <dependencyManagement>
     	<dependencies>
-    		<dependency>
+    	<!-- https://mvnrepository.com/artifact/org.jboss.spec/jboss-javaee-7.0 -->
+			<dependency>
+			    <groupId>org.jboss.spec</groupId>
+			    <artifactId>jboss-javaee-7.0</artifactId>
+			    <version>${jboss-javaee7-spec.version}</version>
+			    <type>pom</type>
+			    <scope>import</scope>
+			</dependency>
+    	
+    	
+    		<!-- <dependency>
     			<groupId>org.jboss.spec</groupId>
     			<artifactId>jboss-javaee-web-6.0</artifactId>
     			<version>${javaee6.web.spec.version}</version>
     			<type>pom</type>
     			<scope>import</scope>
-    		</dependency>
+    		</dependency> -->
     	</dependencies>
     </dependencyManagement>
     <properties>
@@ -33,7 +43,7 @@
         <jboss.home>${env.JBOSS_HOME}</jboss.home>
         <jboss.domain>default</jboss.domain>
         <arquillian.version>1.0.0.Alpha5</arquillian.version>
-        <jboss-javaee6-spec.version>1.0.0.Final</jboss-javaee6-spec.version>
+        <jboss-javaee7-spec.version>1.0.4.Final</jboss-javaee7-spec.version>
         <javaee6.web.spec.version>2.0.0.Final</javaee6.web.spec.version>
         <version.org.primefaces>5.1</version.org.primefaces>		
 		<version.org.primefaces.themes.cupertino>1.0.8</version.org.primefaces.themes.cupertino>
@@ -75,17 +85,52 @@
     </pluginRepositories>
 
     <dependencies>
+    	<!-- https://mvnrepository.com/artifact/org.picketbox/jbosssx-bare -->
+		<dependency>
+		    <groupId>org.picketbox</groupId>
+		    <artifactId>jbosssx-bare</artifactId>
+		    <version>4.9.7.Final</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>javax.persistence</groupId>
+		    		<artifactId>persistence-api</artifactId>
+		    	</exclusion>
+		    	<exclusion>
+		    		<groupId>org.hibernate</groupId>
+		    		<artifactId>hibernate-core</artifactId>
+		    	</exclusion>
+		    	<exclusion>
+		    		<groupId>org.hibernate</groupId>
+		    		<artifactId>hibernate-entitymanager</artifactId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency>
+    
+    	<!-- https://mvnrepository.com/artifact/org.picketbox/jboss-security-spi -->
+		<dependency>
+		    <groupId>org.picketbox</groupId>
+		    <artifactId>jboss-security-spi</artifactId>
+		    <version>4.9.7.Final</version>
+		</dependency>
+    
+    	<!-- https://mvnrepository.com/artifact/org.picketbox/picketbox-commons -->
+		<dependency>
+		    <groupId>org.picketbox</groupId>
+		    <artifactId>picketbox-commons</artifactId>
+		    <version>1.0.0.final</version>
+		</dependency>
+    
         <!-- Annotation processor to generate the JPA 2.0 metamodel classes for typesafe criteria queries -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
-            <version>1.1.1.Final</version>
+            <version>5.2.8.Final</version>
             <scope>provided</scope>
-            <!-- Excluded because it's provided by the Java EE 6 dependencies -->
+            <!-- Excluded because it's provided by the Java EE 7 dependencies -->
             <exclusions>
                 <exclusion>
                     <groupId>org.hibernate.javax.persistence</groupId>
-                    <artifactId>hibernate-jpa-2.0-api</artifactId>
+                    <artifactId>hibernate-jpa-2.1-api</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -130,7 +175,7 @@
         </dependency>
         <dependency>
         	<groupId>org.jboss.spec.javax.faces</groupId>
-        	<artifactId>jboss-jsf-api_2.0_spec</artifactId>
+        	<artifactId>jboss-jsf-api_2.2_spec</artifactId>
         	<scope>provided</scope>
         </dependency>
     </dependencies>
@@ -143,8 +188,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -163,8 +208,8 @@
                 <!-- This one dependency imports all APIs available for a Java EE 6.0 application -->
                 <dependency>
                     <groupId>org.jboss.spec</groupId>
-                    <artifactId>jboss-javaee-6.0</artifactId>
-                    <version>${jboss-javaee6-spec.version}</version>
+                    <artifactId>jboss-javaee-7.0</artifactId>
+                    <version>${jboss-javaee7-spec.version}</version>
                     <type>pom</type>
                     <scope>provided</scope>
                 </dependency>

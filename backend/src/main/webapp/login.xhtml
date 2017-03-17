@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   template="/WEB-INF/templates/default.xhtml">   
+   <ui:define name="content">
+     	
+	<h2>Hello, please log in:</h2>
+        <form method="post" action="j_security_check">
+            <div>
+                <div>
+                    <h:outputLabel for="j_username" value="Please type your user name:"/>
+                    <h:inputText id="j_username" autocomplete="off" size="20" />
+                </div>
+                <div>
+                    <h:outputLabel for="j_password" value="Please type your password:"/>
+                    <h:inputSecret id="j_password" autocomplete="off" size="20"/>
+                </div>
+            </div>
+            <p>
+                <h:commandButton type="submit" value="Submit"/>
+                <br/>
+                <h:commandButton type="reset" value="Reset"/>
+            </p>
+		</form>
+     	
+   </ui:define>   
+</ui:composition>
