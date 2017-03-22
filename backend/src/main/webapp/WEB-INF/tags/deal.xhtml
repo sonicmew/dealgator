@@ -1,0 +1,25 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<div id="#{deal.id}">
+		<h:outputText value="#{deal.id}: " style="font-weight: bold;"/>     						
+		<p:dataGrid id="dealProps" value="#{deal.dealProperties}" var="property" columns="1">
+			<h:outputText value="#{property.name}: " style="font-weight: bold;"/>
+			<h:outputText value="#{property.value}" />
+		</p:dataGrid>
+		
+		<div>
+			<h6>Metadata</h6>
+			<div>
+				Import date: #{deal.dealMetadata.importDate}	     								
+				Update date: #{deal.dealMetadata.updateDate}	     								
+			</div>
+		</div>
+	</div>
+	
+ 
+</ui:composition>

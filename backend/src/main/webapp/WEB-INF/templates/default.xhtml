@@ -13,7 +13,9 @@
 		<h:body>
 			<div id="top">
 				<ui:fragment rendered="#{userSession.user != null}">
-					<h:commandLink action="#{userSession.logout}" value="Logout"/>
+					<h:form>
+						<h:commandLink action="#{userSession.logout}" value="Logout"/>
+					</h:form>
 				</ui:fragment>				
 			</div>
 		

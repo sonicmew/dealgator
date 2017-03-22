@@ -1,0 +1,21 @@
+<facelet-taglib id="x" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd"
+                version="2.2">
+
+    <namespace>http://www.dealgator.gr/jsf2/taglib</namespace>
+    
+	<tag>
+        <description><![CDATA[Deal display]]></description>
+        <display-name><![CDATA[Deal display]]></display-name>
+        <tag-name>deal</tag-name>
+        <source><![CDATA[tags/deal.xhtml]]></source>
+        <attribute>
+        	<description><![CDATA[DTO containing required information]]></description>
+        	<name>dealInfo</name>
+        	<required>true</required>
+        	<type>com.giventime.dealgator.common.dto.DealInfo</type>
+        </attribute>        
+    </tag>
+    
+</facelet-taglib>    

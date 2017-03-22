@@ -13,6 +13,10 @@
 		<param-value>cupertino</param-value>
 	</context-param>
 
+	<context-param>
+	   <param-name>facelets.LIBRARIES</param-name>
+	   <param-value>/WEB-INF/dealgator.taglib.xml</param-value>
+	</context-param>
 
 	<welcome-file-list>
 		<welcome-file>/welcome.xhtml</welcome-file>

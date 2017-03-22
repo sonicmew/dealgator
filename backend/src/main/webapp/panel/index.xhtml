@@ -4,13 +4,14 @@
    xmlns:f="http://java.sun.com/jsf/core"
    xmlns:h="http://java.sun.com/jsf/html"
    xmlns:p="http://primefaces.org/ui"
+   xmlns:d="http://www.dealgator.gr/jsf2/taglib"
    template="/WEB-INF/templates/default.xhtml">
    <ui:define name="content">
      	
-	     	<p:tabView id="adminTab" dynamic="true">
-	     	
+     	<h:form id="adminPanelForm">
+     	
+	     	<p:tabView id="adminTab" dynamic="true" cache="false">
 	     		<p:tab id="configTab" title="Configuration">
-	     			<h:form id="configForm">
 	     				
 	     				<div class="formBox">
 	     					<p:dataTable id="configurations" value="#{configurationBean.dataModel}" var="config" itemType="none">
@@ -40,36 +41,21 @@
 	     						<p:commandButton id="revertButton" action="#{configurationBean.revert()}" value="Revert" ajax="true" update="@form"/>	     						
 	     					</p:panel>
 	     				</div>
-					</h:form>	     		
 	     		</p:tab>
 	     			
-	     		<p:tab id="dealTab" title="Manage deals">
-	     			<h:form id="dealForm">	     		
+	     		<p:tab id="dealTab" title="Manage deals">		     		
 	     				
 	     				<div class="formBox">
 	     					<ui:repeat id="deals" value="#{dealBean.dataModel}" var="deal">
-     							<h:outputText value="#{deal.id}: " style="font-weight: bold;"/>     						
-	     						<p:dataGrid id="dealProps" value="#{deal.dealProperties}" var="property" columns="1">
-	     							<h:outputText value="#{property.name}: " style="font-weight: bold;"/>
-	     							<h:outputText value="#{property.value}" />
-	     						</p:dataGrid>
-	     						
-	     						<div>
-	     							<h6>Metadata</h6>
-	     							<div>
-	     								Import date: #{deal.dealMetadata.importDate}	     								
-	     								Update date: #{deal.dealMetadata.updateDate}	     								
-	     							</div>
-	     						</div>
+     							
+     							<d:deal dealInfo="deal"/>
 	     						
 	     					</ui:repeat>
 	     				</div>
 	     				
-	     			</h:form>
 	     		</p:tab>
 	     		
 	     		<p:tab id="categoryTab" title="Manage categories">
-	     			<h:form id="categoryForm">
 	     				
 	     				<div class="formBox">
 	     					<p:dataTable id="categories" value="#{categoryBean.dataModel}" var="category" itemType="none">
@@ -89,7 +75,6 @@
 	     						
 	     					</p:dataTable>
 	     				</div>
-					</h:form>
 	     		</p:tab>
 	     			
 	     		<p:tab title="Manage shops">
@@ -97,15 +82,14 @@
 	     		</p:tab>
 	     			
 	     		<p:tab title="Import deals">
-	     			<h:form id="importForm">
 	     			
 	     				<p:commandButton action="#{dealImportBean.importDeals}" value="Import!"/>
 	     				<p:commandButton action="#{dealImportBean.deleteDeals}" value="Delete!"/>
-	     			</h:form>
 	     		</p:tab>	
 	     	
 	     	</p:tabView>
-
+	
+		</h:form>
      	
    </ui:define>
 </ui:composition>

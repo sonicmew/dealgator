@@ -85,41 +85,6 @@
     </pluginRepositories>
 
     <dependencies>
-    	<!-- https://mvnrepository.com/artifact/org.picketbox/jbosssx-bare -->
-		<dependency>
-		    <groupId>org.picketbox</groupId>
-		    <artifactId>jbosssx-bare</artifactId>
-		    <version>4.9.7.Final</version>
-		    <exclusions>
-		    	<exclusion>
-		    		<groupId>javax.persistence</groupId>
-		    		<artifactId>persistence-api</artifactId>
-		    	</exclusion>
-		    	<exclusion>
-		    		<groupId>org.hibernate</groupId>
-		    		<artifactId>hibernate-core</artifactId>
-		    	</exclusion>
-		    	<exclusion>
-		    		<groupId>org.hibernate</groupId>
-		    		<artifactId>hibernate-entitymanager</artifactId>
-		    	</exclusion>
-		    </exclusions>
-		</dependency>
-    
-    	<!-- https://mvnrepository.com/artifact/org.picketbox/jboss-security-spi -->
-		<dependency>
-		    <groupId>org.picketbox</groupId>
-		    <artifactId>jboss-security-spi</artifactId>
-		    <version>4.9.7.Final</version>
-		</dependency>
-    
-    	<!-- https://mvnrepository.com/artifact/org.picketbox/picketbox-commons -->
-		<dependency>
-		    <groupId>org.picketbox</groupId>
-		    <artifactId>picketbox-commons</artifactId>
-		    <version>1.0.0.final</version>
-		</dependency>
-    
         <!-- Annotation processor to generate the JPA 2.0 metamodel classes for typesafe criteria queries -->
         <dependency>
             <groupId>org.hibernate</groupId>
